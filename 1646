@@ -1,0 +1,16 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int n,q;
+	cin>>n>>q;
+	vector<long long> l(n),s(n+1,0);
+	for(auto &x:l) cin>>x;
+	for(int i=0;i<n;i++) s[i+1]=s[i]+l[i];
+	while(q--)
+	{
+		int a,b;
+		cin>>a>>b;
+		cout<<s[b]-s[a-1]<<"\n";
+	}
+}
