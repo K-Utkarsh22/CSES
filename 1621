@@ -1,0 +1,16 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int n;
+	set<long long> s;
+	cin>>n;
+	auto nn=n;
+	while(nn--)
+	{
+		long long x;cin>>x;
+		s.insert(x);
+	}
+	cout<<s.size();
+}
+	
