@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+	long long nn,n=5,f=0;
+	cin>>nn;
+	while(nn/n>0)
+	{
+		f=f+nn/n;
+		n=n*5;
+	}
+	cout<<f;
+}
