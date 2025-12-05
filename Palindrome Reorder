@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string s; cin>>s;
+    vector<int> v(26);
+    for(char x:s) v[x-'A']++;
+    int o=0,x=-1;
+    for(int i=0;i<26;i++) if(v[i]%2==1) o++,x=i;
+    if(o>1)
+    {
+        cout<<"NO SOLUTION";
+        return 0;
+    }
+    string a="",b="",c="";
+    if(x!=-1)
+    {
+        for(int i=0;i<v[x];i++) b.push_back('A'+x);
+    }
+    for(int i=0;i<26;i++)
+    {
+        for(int j=0;j<v[i]/2;j++) a.push_back('A'+i);
+    }
+    c=a;
+    reverse(c.begin(),c.end());
+    cout<<a<<b<<c;
+}
