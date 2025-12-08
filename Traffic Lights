@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int x,n;cin>>x>>n;
+    vector<int> v(n);
+    set<int> s;
+    s.insert(0);s.insert(x);
+    for(auto &k:v)
+    {
+        cin>>k;
+        s.insert(k);
+    }
+    int m=0;
+    auto l=s.end();
+    l--;
+    for(auto i=s.begin();i!=l;i++) 
+    {
+        auto nx=i;
+        nx++;
+        m=max(m,*nx-*i);
+    }
+    vector<int> a(n);
+    for(int i=n-1;i>=0;i--)
+    {
+        a[i]=m;
+        auto it=s.find(v[i]);
+        auto nx=it;
+        nx++;
+        auto l=it;
+        l--;
+        m=max(m,*nx-*l);
+        s.erase(it);
+    }
+    for(auto &k:a) cout<<k<<" ";
+    cout<<"\n";
+}
