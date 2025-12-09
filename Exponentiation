@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+void solve()
+{
+    long long a,b,f=1,c=10e8+7;
+    cin>>a>>b;
+    while(b>0)
+    {
+        if(b%2==0)
+        {
+            a=(a*a)%c;
+            b=b/2;
+        }
+        else
+        {
+            f=(f*a)%c;
+            b--;
+        }
+    }
+    cout<<f<<"\n";
+}
+int main()
+{
+    int n;cin>>n;
+    while(n--)
+    {
+        solve();
+    }
+}
