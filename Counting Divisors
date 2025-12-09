@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long N=10e5+1;
+vector<long long> s(N);
+void spf()
+{
+    for(long long i=1;i<N;i++)
+    {
+        for(long long j=i;j<N;j+=i)
+            s[j]++;
+    }
+}
+int main()
+{
+    spf();
+    int n;cin>>n;
+    while(n--)
+    {
+        long long x;cin>>x;
+        cout<<s[x]<<"\n";
+    }
+}
