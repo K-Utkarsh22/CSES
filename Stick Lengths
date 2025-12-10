@@ -8,7 +8,7 @@ int main()
     sort(v.begin(),v.end());
     long long x=v[n/2];
     long long sum= 0;
-    for (auto &k : v) 
+    for (auto &k:v) 
     {
         sum+=abs(k-x);
     }
