@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n,l=0,c=0;
+    long long x,s=0;
+    cin>>n>>x;
+    vector<int>v(n);
+    for(auto &x:v) cin>>x;
+    for(auto &k:v)
+    {
+        s+=k;
+        while(s>x)
+        {
+            s-=v[l];
+            l++;
+        }
+        if(s==x) c++;
+    }
+    cout<<c;
+}
