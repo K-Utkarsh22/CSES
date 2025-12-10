@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;cin>>n;
+    vector<long long> v(n);
+    for(auto &x:v) cin>>x;
+    sort(v.begin(),v.end());
+    long long x=v[n / 2];
+    long long sum= 0;
+    for (auto &k : v) 
+    {
+        sum+=abs(k-x);
+    }
+    cout<<sum<<"\n";
+}
