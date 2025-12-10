@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n,m;cin>>n>>m;
+    vector<int> v(n+1);
+    vector<int> in(n+1);
+    for(int i=1;i<=n;i++)
+    {
+        cin>>v[i];
+        in[v[i]]=i;
+    }
+    int l=1;
+    for(int i=1;i<n;i++)
+    {
+        if(in[i]>in[i+1]) l++;
+    }
+    while(m--)
+    {
+        int a,b;cin>>a>>b;
+        int v1=v[a];
+        int v2=v[b];
+        set<int> c;
+        if(v1>1) c.insert(v1-1);
+        if(v1<n) c.insert(v1);
+        if(v2>1) c.insert(v2-1);
+        if(v2<n) c.insert(v2);
+        for(auto x:c)
+        {
+            if(in[x]>in[x+1]) l--;
+        }
+        swap(v[a],v[b]);
+        in[v1]=b;
+        in[v2]=a;
+        for(auto x:c)
+        {
+            if(in[x]>in[x+1]) l++;
+        }
+        cout<<l<<"\n";
+    }
+}
