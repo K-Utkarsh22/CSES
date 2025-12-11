@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int n;
+	long long x; cin>>n>>x;
+	vector<long long>v(n);
+	for(auto &val:v) cin>>val;
+	map<long long,pair<int,int>> mp;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=i+1;j<n;j++)
+		{
+			long long k=x-v[i]-v[j];
+			if(mp.count(k))
+			{
+				cout<<mp[k].first<<" "<<mp[k].second<<" "<<i+1<<" "<<j+1;
+				return 0;
+			}
+		}
+		for(int j=0;j<i;j++)
+		{
+			long long s=v[i]+v[j];
+			mp[s]={i+1,j+1};
+		}
+	}
+	cout<<"IMPOSSIBLE";
+}
