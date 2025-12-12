@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> l,r;
+void hoi(int n,int a,int b,int c)
+{
+    if(n>0)
+    {
+        hoi(n-1,a,c,b);
+        l.push_back(a);
+        r.push_back(c);
+        hoi(n-1,b,a,c);
+    }
+    else return;
+}
+int main()
+{
+    int n;cin>>n;
+    hoi(n,1,2,3);
+    int x=l.size();
+    cout<<x<<"\n";
+    for(int i=0;i<x;i++)
+    {
+        cout<<l[i]<<" "<<r[i]<<"\n";
+    }
+}
