@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long M=1e9+7;
+long long N=1e6+1;
+vector<long long> fact(N,0);
+long long exp(long long a,long long b)
+{
+    long long res=1;
+    while(b>0)
+    {
+        if(b&1)
+        {
+            res=(res*a)%M;
+            b--;
+        }
+        else
+        {
+            a=(a*a)%M;
+            b/=2;
+        }
+    }
+    return res;
+}
+int main()
+{
+    fact[0]=1;
+    for(long long i=1;i<N;i++)
+    {
+        fact[i]=(fact[i-1]*i)%M;
+    }
+    int n;cin>>n;
+    while(n--)
+    {
+        long long a,b;
+        cin>>a>>b;
+        long long n=fact[a];
+        long long d=(fact[a-b]*fact[b])%M;
+        d=exp(d,M-2);
+        cout<<(n*d)%M<<"\n";
+    }
+}
