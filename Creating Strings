@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+set<string> st;
+void cs(vector<int> f,string s)
+{
+    int flag=1;
+    for(int i=0;i<26;i++)
+    {
+        if(f[i]>0)
+        {
+            flag=0;
+            f[i]--;
+            string k=s+(char)(i+'a');
+            cs(f,k);
+            f[i]++;
+        }
+    }
+    if(flag)
+    {
+        st.insert(s);
+        return;
+    }
+}
+
+int main()
+{
+    string s;cin>>s;
+    vector<int> v(26);
+    for(auto &x:s) v[x-'a']++;
+    cs(v,"");
+    cout<<st.size()<<"\n";
+    for(auto &x:st) cout<<x<<"\n";
+}
