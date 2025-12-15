@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long sum(long long i,long long cs,long long fs,vector<long long> &v,long long n)
+{
+    if(i==n)
+    {
+        return abs(fs-2*cs);
+    }
+    long long p=sum(i+1,cs+v[i],fs,v,n);
+    long long np=sum(i+1,cs,fs,v,n);
+    return min(p,np);
+}
+int main()
+{
+    int n;cin>>n;
+    vector<long long> v(n);
+    for(auto &x:v) cin>>x;
+    long long s=accumulate(v.begin(),v.end(),0LL);
+    cout<<sum(0,0,s,v,n)<<"\n";
+}
