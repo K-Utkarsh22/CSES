@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long n;
+int k;
+vector<long long> p;
+vector<long long> s[21];
+void gen(int i,long long c,int sz)
+{
+    if(i==k)
+    {
+        if(sz>0) s[sz].push_back(c);
+        return;
+    }
+    gen(i+1,c,sz);
+    if(c<=n/p[i])
+    {
+        gen(i+1,c*p[i],sz+1);
+    }
+}
+int main()
+{
+    cin>>n>>k;
+    for(int i=0;i<k;i++)
+    {
+    	long long x;cin>>x;
+    	p.push_back(x);
+    }
+    gen(0,1,0);
+    long long r=0;
+    for(int i=1;i<=k;i++)
+    {
+        for(long long x:s[i])
+        {
+            if(i%2==1) r+=n/x;
+            else r-=n/x;
+        }
+    }
+    cout<<r<<"\n";
+}
