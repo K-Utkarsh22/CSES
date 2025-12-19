@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    long long n; cin>>n;
+    vector<long long> v(n);
+    for(auto &x:v) cin>>x;
+    long long sum=0,l=0;
+    map<long long,long long> c;
+    for(long long r=0;r<n;r++)
+    {
+        c[v[r]]++;
+        while(c[v[r]]>1)
+        {
+            c[v[l]]--;
+            l++;
+        }
+        sum+=(r-l+1);
+    }
+    cout<<sum<<"\n";
+}
