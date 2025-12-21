@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;cin>>n;
+    vector<pair<pair<int, int>,int>> v(n);
+    int i=0;
+    for(auto &x:v)
+    {
+        cin>>x.first.first>>x.first.second;
+        x.second=i++;
+    }
+    sort(v.begin(),v.end());
+    multiset<pair<int,int>> s;
+    vector<int> r(n);
+    int k=0;
+    for(auto &x:v)
+    {
+        auto it=s.lower_bound({x.first.first,0});
+        if(it==s.begin())
+        {
+            s.insert({x.first.second, ++k});
+            r[x.second]=k;
+        }
+        else
+        {
+            it--;
+            int id=it->second;
+            s.erase(it);
+            s.insert({x.first.second,id});
+            r[x.second]=id;
+        }
+    }
+    cout<<k<<"\n";
+    for(auto x:r) cout<<x<<" ";
+}
