@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int low=1,high=1e9,ans=0;
+    while(low<=high)
+    {
+        int mid=low+(high-low)/2;
+        cout<<"? "<<mid<<endl;
+        string s;cin>>s;
+        if(s=="YES")
+        {
+            ans=mid;
+            low=mid+1;
+        }
+        else high=mid-1;
+    }
+    cout<<"! "<<ans+1<<endl;
+}
+
+
+
+
+//-----------------------------------OR-----------------------
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int low=1,high=1e9,ans=0;
+    while(low<=high)
+    {
+        int mid=low+(high-low)/2;
+        cout<<"? "<<mid<<"\n"<<flush;
+        string s;cin>>s;
+        if(s=="YES")
+        {
+            ans=mid;
+            low=mid+1;
+        }
+        else high=mid-1;
+    }
+    cout<<"! "<<ans+1<<"\n"<<flush;
+}
