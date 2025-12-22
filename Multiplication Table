@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+#define ll long long 
+using namespace std;
+int main()
+{
+    ll n;cin>>n;
+    ll l=1,r=n*n,m,a;
+    ll t=(n*n+1)/2;
+    while(l<=r)
+    {
+        m=l+(r-l)/2;
+        ll c=0;
+        for(int i=1;i<=n;i++) c+=min(n,m/i);
+        if(c>=t)
+        {
+            a=m;
+            r=m-1;
+        }
+        else l=m+1;
+    }
+    cout<<a<<"\n";
+}
