@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long m=1e9+7;
+long long exp(long long a,long long b,long long c)
+{
+    long long f=1;
+    a%=c;
+    while(b>0)
+    {
+        if(b%2==0)
+        {
+            a=(a*a)%c;
+            b=b/2;
+        }
+        else
+        {
+            f=(f*a)%c;
+            b--;
+        }
+    }
+    return f;
+}
+int main()
+{
+    long long n;cin>>n;
+    long long s=0;
+    long long v=exp(2,m-2,m);
+    for(long long i=1,j;i<=n;i=j)
+    {
+        long long q=n/i;
+        j=n/q+1;
+        long long r=(j-1)%m,l=(i-1)%m;
+        long long k=((r*(r+1)%m)*v%m-(l*(l+1)%m)*v%m+m)%m;
+        s=(s+(q%m*k)%m)%m;
+    }
+    cout<<s<<"\n";
+}
