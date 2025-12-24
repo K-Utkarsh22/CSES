@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define f first
+#define s second
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    vector<pair<pair<ll,ll>,int>> v(n);
+    for(int i=0;i<n;i++)
+    {
+        cin>>v[i].f.f>>v[i].f.s;
+        v[i].s=i;
+    }
+    sort(v.begin(),v.end(),[](auto a,auto b)
+    {
+        if(a.f.f==b.f.f) return a.f.s>b.f.s;
+        return a.f.f<b.f.f;
+    });
+    vector<int> c1(n,0),c2(n,0);
+    ll mxr=0;
+    for(int i=0;i<n;i++)
+    {
+        if(v[i].f.s<=mxr) c2[v[i].s]=1;
+        mxr=max(mxr,v[i].f.s);
+    }
+    ll mnr=2e9+7;
+    for(int i=n-1;i>=0;i--)
+    {
+        if(v[i].f.s>=mnr) c1[v[i].s]=1;
+        mnr=min(mnr,v[i].f.s);
+    }
+    for(auto x:c1) cout<<x<<" ";
+    cout<<"\n";
+    for(auto x:c2) cout<<x<<" ";
+}
