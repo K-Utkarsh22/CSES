@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long m=1e9+7;
+map<long long,long long> dp;
+long long rec(long long n)
+{
+    if(n<=0) return 0;
+    if(n==1 || n==2) return 1;
+    if(dp.count(n)) return dp[n];
+    long long k=n/2;
+    if(n&1)
+    {
+        dp[n]=((rec(k)*rec(k))%m+(rec(k+1)*rec(k+1))%m)%m;
+        return dp[n];
+    }
+    else
+    {
+        dp[n]=((2*rec(k-1)+rec(k))%m*rec(k))%m;
+        return dp[n];
+    }
+}
+int main()
+{
+    long long n;cin>>n;
+    cout<<rec(n);
+}
