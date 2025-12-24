@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;cin>>t;
+    while(t--)
+    {
+        int n;cin>>n;
+        vector<long long> v(n);
+        for(auto &x:v) cin>>x;
+        long long sum=0;
+        for(auto &x:v) sum^=x;
+        if(sum==0) cout<<"second\n";
+        else cout<<"first\n";
+    }
+}
