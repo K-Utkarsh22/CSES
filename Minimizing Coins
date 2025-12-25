@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n,x;
+    cin>>n>>x;
+    vector<int> v(n);
+    for(auto &x:v) cin>>x;
+    vector<int> dp(x+1,1000001);
+    dp[0]=0;
+    for(int i=1;i<=x;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            if(i-v[j]>=0)
+            {
+                int r=dp[i-v[j]]+1;
+                if(r<dp[i])
+                    dp[i]=r;
+            }
+        }
+    }
+    if(dp[x]>1000000)
+        cout<<-1<<"\n";
+    else
+    {
+        auto o=dp[x];
+        cout<<o<<"\n";
+    }
+}
