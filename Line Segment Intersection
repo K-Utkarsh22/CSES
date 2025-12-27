@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+ll o(ll x1,ll y1,ll x2,ll y2,ll x3,ll y3)
+{
+    ll v=(y2-y1)*(x3-x2)-(x2-x1)*(y3-y2);
+    if(v==0) return 0;
+    return (v>0)?1:2;
+}
+bool on(ll x1,ll y1,ll x2,ll y2,ll x3,ll y3)
+{
+    return x3<=max(x1,x2) && x3>=min(x1,x2) && y3<=max(y1,y2) && y3>=min(y1,y2);
+}
+
+void solve()
+{
+    ll x1,y1,x2,y2,x3,y3,x4,y4;
+    cin>>x1>>y1>>x2>>y2>>x3>>y3>>x4>>y4;
+    ll o1=o(x1,y1,x2,y2,x3,y3);
+    ll o2=o(x1,y1,x2,y2,x4,y4);
+    ll o3=o(x3,y3,x4,y4,x1,y1);
+    ll o4=o(x3,y3,x4,y4,x2,y2);
+    if(o1!=o2 && o3!=o4)
+    {
+        cout<<"YES\n";
+        return;
+    }
+    if(o1==0 && on(x1,y1,x2,y2,x3,y3))
+    {
+        cout<<"YES\n";
+        return;
+    }
+    if(o2==0 && on(x1,y1,x2,y2,x4,y4))
+    {
+        cout<<"YES\n";
+        return;
+    }
+    if(o3==0 && on(x3,y3,x4,y4,x1,y1))
+    {
+        cout<<"YES\n";
+        return;
+    }
+    if(o4==0 && on(x3,y3,x4,y4,x2,y2))
+    {
+        cout<<"YES\n";
+        return;
+    }
+    cout<<"NO\n";
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+    }
+}
