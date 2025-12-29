@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long mod=1e9+7;
+const int N=1e6+1;
+long long f[N];
+void func()
+{
+    f[0]=1;
+    for(int i=1;i<N;i++) f[i]=(f[i-1]*i)%mod;
+}
+long long exp(long long a,long long b)
+{
+    long long r=1;
+    while(b>0)
+    {
+        if(b&1) r=(r*a)%mod;
+        a=(a*a)%mod;
+        b/=2;
+    }
+    return r;
+}
+int main()
+{
+    func();
+    long long n;cin>>n;
+    if(n%2)
+    {
+        cout<<0<<"\n";
+        return 0;
+    }
+    long long k=n/2;
+    long long r=f[n];
+    long long i1=exp(f[k],mod-2),i2=exp(f[n-k],mod-2),i3=exp(k+1,mod-2);
+    r=(r*i1)%mod;
+    r=(r*i2)%mod;
+    r=(r*i3)%mod;
+    cout<<r<<"\n";
+}
