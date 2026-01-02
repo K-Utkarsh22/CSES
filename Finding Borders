@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string s;
+    cin>>s;
+    int n=s.size();
+    vector<int> v(n,0);
+    for(int x=1;x<n;x++)
+    {
+        int j=v[x-1];
+        while(j>0&&s[x]!=s[j]) j=v[j-1];
+        if(s[x]==s[j]) j++;
+        v[x]=j;
+    }
+    vector<int> r;
+    int t=v[n-1];
+    while(t>0)
+    {
+        r.push_back(t);
+        t=v[t-1];
+    }
+    sort(r.begin(),r.end());
+    for(auto x:r) cout<<x<<" ";
+    cout<<"\n";
+}
