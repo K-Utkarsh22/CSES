@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n,k,m=1e9+7;
+    cin>>n>>k;
+    vector<int> v(k+1,0);
+    v[0]=1;
+    for(int i=1;i<=n;++i)
+    {
+        vector<int> nxt(k+1,0);
+        long s=0;
+        for(int j=0;j<=k;++j)
+        {
+            s=(s+v[j])%m;
+            if(j>=i)
+            {
+                s=(s-v[j-i]+m)%m;
+            }
+            nxt[j]=s;
+        }
+        v=nxt;
+    }
+    cout<<v[k]<<"\n";
+}
