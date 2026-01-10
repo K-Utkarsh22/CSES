@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+void build(vector<ll> &v,vector<ll> &t,int x,int l,int r)
+{
+    if(l==r) t[x]=v[l];
+    else
+    {
+        int m=(l+r)/2;
+        build(v,t,2*x,l,m);
+        build(v,t,2*x+1,m+1,r);
+        t[x]=min(t[2*x],t[2*x+1]);
+    }
+}
+ll segTree(vector<ll> &t,int x,int l,int r,int ql,int qr)
+{
+    long long ret=LLONG_MAX;
+    if(ql>r||qr<l)
+        return ret;
+    if(ql<=l&&r<=qr)
+        return t[x];
+    int m=(l+r)/2;
+    return min(segTree(t,2*x,l,m,ql,qr),segTree(t,2*x+1,m+1,r,ql,qr));
+}
+int main()
+{
+    int n,q;cin>>n>>q;
+    vector<ll> v(n+1);
+    for(int i=1;i<=n;++i)cin>>v[i];
+    vector<ll> t(4*n);
+    build(v,t,1,1,n);
+    while(q--)
+    {
+        int a,b;cin>>a>>b;
+        cout<<segTree(t,1,1,n,a,b)<<"\n";
+    }
+}
