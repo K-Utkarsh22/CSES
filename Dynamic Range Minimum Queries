@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+void updateSegTree(vector<long long> &v,int x,int l,int r,int p,long long n)
+{
+    if(l==r)v[x]=n;
+    else
+    {
+        int m=(l+r)/2;
+        if(p<=m) updateSegTree(v,2*x,l,m,p,n);
+        else updateSegTree(v,2*x+1,m+1,r,p,n);
+        v[x]=min(v[2*x],v[2*x+1]);
+    }
+}
+long long segTree(vector<long long> &v,int x,int l,int r,int ql,int qr)
+{
+    if(ql>r||qr<l) return 2e18;
+    if(ql<=l&&r<=qr) return v[x];
+    int m=(l+r)/2;
+    return min(segTree(v,2*x,l,m,ql,qr),segTree(v,2*x+1,m+1,r,ql,qr));
+}
+int main()
+{
+    int n,q;cin>>n>>q;
+    vector<long long> v(4*n+1,2e18);
+    for(int i=1;i<=n;++i)
+    {
+        long long x;cin>>x;
+        updateSegTree(v,1,1,n,i,x);
+    }
+    while(q--)
+    {
+    int t;cin>>t;
+    if(t==1)
+    {
+        int p;
+        long long x;cin>>p>>x;
+        updateSegTree(v,1,1,n,p,x);
+    }
+    else
+    {
+        int a,b;cin>>a>>b;
+        auto r=segTree(v,1,1,n,a,b);
+        cout<<r<<"\n";
+    }
+}
